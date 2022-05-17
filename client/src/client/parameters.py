@@ -1,0 +1,2 @@
+SKIP_ENCLAVE = False
+BULK_SEND = True
