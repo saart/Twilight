@@ -18,6 +18,7 @@ try:
         'ytick.labelsize': 18,
         'lines.linewidth': 2,
         'legend.fontsize': 16,
+        'pdf.fonttype': 42,
     })
 except ImportError:
     seaborn, pylab, pyplot = None, None, None

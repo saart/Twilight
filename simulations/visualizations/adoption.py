@@ -17,6 +17,7 @@ pylab.rcParams.update({
     'ytick.labelsize': 18,
     'lines.linewidth': 2,
     'legend.fontsize': 15,
+    'pdf.fonttype': 42,
 })
 
 

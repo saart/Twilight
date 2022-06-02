@@ -1,7 +1,8 @@
 import math
 import scipy.stats
 import seaborn
-from matplotlib import pyplot
+from matplotlib import pyplot, rcParams
+rcParams['pdf.fonttype'] = 42
 seaborn.set()
 
 N = 28
@@ -162,7 +163,7 @@ def print_locked_amount_by_disjoint_route():
 
 if __name__ == '__main__':
     main_2d()
-    # print_locked_amount_by_disjoint_route()
+    print_locked_amount_by_disjoint_route()
 
     print(f"Epsilon for sigma 211 is: {thm3_epsilon_delta(211, 10 ** -7)}")
     print(f"Epsilon for sigma 138 is: {thm3_epsilon_delta(138, 10 ** -7)}")

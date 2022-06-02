@@ -15,6 +15,7 @@ pylab.rcParams.update({
     'ytick.labelsize': 18,
     'lines.linewidth': 2,
     'legend.fontsize': 17,
+    'pdf.fonttype': 42,
 })
 
 REPETITIONS = 100_000_000
@@ -88,5 +89,4 @@ def plot_success_ratio(liquidities: List[int]):
 
 
 if __name__ == '__main__':
-    # plot_success_ratio(list(range(6_000, 20_001, 500)))
-    plot_success_ratio(list(range(6_000, 20_001, 500)) + list(range(12_000, 14_001, 100)))
+    plot_success_ratio(list(range(6_000, 20_001, 500)))

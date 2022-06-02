@@ -1,10 +1,16 @@
 # Implementation of the paper "Differentially-Private Payment Channels with Twilight"
-In this repo we implemented the three parts: 
-* Smart contract
-* Enclave
-* Relay
-* Noise simulations: liquidity_distribution.py to create the stationary distribution per liquidity per sigma, and success_rate to compute the graph.
-* Other graphs: adoption, efficiency-privacy tradeoff, channel-disjoint routes.
+This repo holds the implementation of both the simulations (Sections 6, 7) and the evaluations (Sections 8, 9).
+The simulations are in the `simulations` directory:
+* Figure 4 can be reproduced using `distinct_routes.py`
+* Figures 5 and 6 can be reproduced using `visualizations/efficiency_privacy_tradeoff.py`
+* Figure 7 can be reproduced using `noise_simulations/liquidity_distribution.py` and then `noise_simulations/success_rate.py`
+* Figure 10 can be reproduced using `adoption.py`
+
+The evaluation is implemented in four parts: 
+* Smart contract: `channel.sol` holds the solidity code and `tests/` the tests
+* Enclave: `Enclave/Enclave.cpp` is the main of the trusted part and `App/App.cpp` is the main of the untrusted part
+* Relay: `client/src/app.py` is the main of the client
+* Manager: we manage the evaluations using a python code that executed Azure commands to build the environment and handle the different evaluations that we wanted to do. The code is under `simulations/manage_tests.py`
 
 # Prerequisites:
 * Ubuntu* Desktop-16.04-LTS 64bits
