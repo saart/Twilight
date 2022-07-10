@@ -10,9 +10,9 @@ m = 1  # Number of coins
 n = 1  # Number of overall transactions
 
 delta_sec = {
-    10**-5: "$e^{-5}$",
-    10**-7: "$e^{-7}$",
-    10**-9: "$e^{-9}$"
+    10**-4: "$e^{-5}$",
+    10**-6: "$e^{-7}$",
+    10**-8: "$e^{-9}$"
 }  # gives delta(security)
 delta_eff = {
     # 0.1: "$10^{-1}$",
@@ -107,12 +107,10 @@ def present_2d(thm3, thm4):
         print(point_x, point_y)
         ax1.scatter([point_x], [point_y], color="black", s=20, zorder=5)
         ax1.annotate(f'({round(point_x, -1)}, {point_y:.3})', (point_x, point_y), fontsize=22)
-        fig.legend(loc='best', fontsize=18)
+        fig.legend(fontsize=18)
         fig.tight_layout()
         fig_suffix = round(math.log(d_sec, 10)) - 1
         fig.savefig(fr'C:\Users\user\Downloads\efficiency_privacy_thm3-4_64_{fig_suffix}.pdf', format='pdf')
-
-    pyplot.show()
 
 
 def main_2d():
@@ -133,7 +131,7 @@ def print_locked_amount_by_disjoint_route():
             thm4 = {d_similatiry: [thm4_efficieny_confidence(s, d_similatiry)[0] for s in sigma] for d_similatiry in [0.001]}
 
             for d_sec in delta_sec:
-                index = min(range(len(thm3[d_sec])), key=lambda i: math.fabs(thm3[d_sec][i] - 0.15))
+                index = min(range(len(thm3[d_sec])), key=lambda i: math.fabs(thm3[d_sec][i] - 0.18))
                 # print(f"l={l}, r={r}, index={index}")
                 point_x = thm4[0.001][index]
                 disjoint_routes_to_amount[(l, r, d_sec)] = point_x
@@ -158,12 +156,11 @@ def print_locked_amount_by_disjoint_route():
         fig.legend(fontsize=18)
         fig.savefig(fr'C:\Users\user\Downloads\escrow_to_r_{fig_suffix}.pdf', format='pdf')
 
-    pyplot.show()
-
 
 if __name__ == '__main__':
     main_2d()
     print_locked_amount_by_disjoint_route()
+    pyplot.show()
 
     print(f"Epsilon for sigma 211 is: {thm3_epsilon_delta(211, 10 ** -7)}")
     print(f"Epsilon for sigma 138 is: {thm3_epsilon_delta(138, 10 ** -7)}")

@@ -4,6 +4,7 @@ import os
 import time
 from scipy.stats import norm
 from typing import Tuple, List
+from pathlib import Path
 
 import numpy
 from matplotlib import pyplot
@@ -90,7 +91,9 @@ def plot_dist(distribution: List[float]):
 
 
 def store_distribution(liquidity: int, distribution: List[float], sigma: int = NOISE_SIGMA):
-    json.dump(distribution, open(f'data/{sigma}/liquidity_dis_{liquidity}', 'w'))
+    path = f'data/{sigma}/liquidity_dis_{liquidity}'
+    Path(path).parent.mkdir(exist_ok=True, parents=True)
+    json.dump(distribution, open(path, 'w'))
 
 
 def load_distribution(liquidity: int, sigma: int = NOISE_SIGMA) -> List[float]:

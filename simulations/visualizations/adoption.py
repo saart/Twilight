@@ -1,9 +1,11 @@
 import json
+import os
 import numpy.random
 from typing import List, Set
 
+import lightning
 from lightning.classes import Node
-from lightning.utils import load_list_from_disk, CHANNELS_PATH
+from lightning.utils import load_list_from_disk
 
 
 from matplotlib import pylab, pyplot
@@ -21,6 +23,8 @@ pylab.rcParams.update({
 })
 
 
+DATA_FILE = os.path.dirname(lightning.__file__) + '/../../../../describegraph_nov_21.json'
+
 
 def _has_private_route(nodes, update_component, degree):
     pairs_count = lambda n: n * (n-1) / 2
@@ -37,10 +41,10 @@ def _has_private_route(nodes, update_component, degree):
 
 
 def has_private_route():
-    nodes: List[Node] = load_list_from_disk()
+    nodes: List[Node] = load_list_from_disk(path=DATA_FILE)
     nodes_data = _has_private_route(nodes, lambda n: ([c.other_node(n) for c in n.channels], True), lambda n: len(n.channels))
 
-    channels_json = json.load(open(CHANNELS_PATH, 'rb'))
+    channels_json = json.load(open(DATA_FILE, 'rb'))
     lnbig_nodes = [n for n in channels_json["nodes"] if "lnbig" in n["alias"].lower()]
     lnbig_node_set = set(n["pub_key"] for n in lnbig_nodes)
     lnbig_node_set = {n for n in nodes if n.name in lnbig_node_set}
@@ -69,7 +73,7 @@ def has_private_route():
 
 
 def has_private_route_random_adoption():
-    nodes: List[Node] = load_list_from_disk()
+    nodes: List[Node] = load_list_from_disk(path=DATA_FILE)
     pairs_count = lambda n: n * (n - 1) / 2
     total_pairs = pairs_count(len(nodes))
     data = []
