@@ -1,7 +1,6 @@
 import multiprocessing.pool
 from typing import List
-
-from simulations.noise_simulations.liquidity_distribution import load_distribution
+import json
 
 import numpy
 import seaborn
@@ -20,6 +19,10 @@ pylab.rcParams.update({
 
 REPETITIONS = 100_000_000
 ALICE_TX_SIZE = 1
+
+
+def load_distribution(liquidity: int, sigma: int = 120) -> List[float]:
+    return json.load(open(f'data/{sigma}/liquidity_dis_{liquidity}', 'r'))
 
 
 def compute_success_rate(liquidity: int, sigma: int, repetitions=REPETITIONS, with_noise: bool = True):

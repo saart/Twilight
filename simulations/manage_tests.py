@@ -9,8 +9,8 @@ import concurrent.futures
 import numpy
 import requests
 
-from simulations.azure_helper import create_machines, start_machines, stop_machines, get_vm_ips, exec_command
-from simulations.reduce_graph import choose_routes
+from azure_helper import create_machines, start_machines, stop_machines, get_vm_ips, exec_command
+from reduce_graph import choose_routes
 
 SAMPLES = 40
 PARAMETERS_FILE = '/home/azureuser/privacy_in_pcn/client/src/client/parameters.py'

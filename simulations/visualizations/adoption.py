@@ -23,7 +23,7 @@ pylab.rcParams.update({
 })
 
 
-DATA_FILE = os.path.dirname(lightning.__file__) + '/../../../../describegraph_nov_21.json'
+DATA_FILE = 'describegraph_nov_21.json'
 
 
 def _has_private_route(nodes, update_component, degree):
