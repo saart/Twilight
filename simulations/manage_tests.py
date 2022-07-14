@@ -259,7 +259,7 @@ if __name__ == '__main__':
     # create_machines(range(0, 4), 'northeurope')
     start_machines(6)
     machine_ips = prepare_globals(6, get_pull_cmd(should_compile=True))
-    for route_length in range(4, 7):
+    for route_length in range(3, 7):
         print("route_length:", route_length)
         result = build_linear_throughput_data(machine_ips[:route_length])
         print('-' * 50)
